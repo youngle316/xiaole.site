@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Autour_One } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "~/provider/ThemeProvider";
 import "./globals.css";
 
@@ -60,6 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${autourOne.className}`}>
+        <Analytics />
         <ThemeProvider attribute="class" enableSystem={false}>
           <main className="m-5 flex flex-col">{children}</main>
         </ThemeProvider>
