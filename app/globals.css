@@ -77,4 +77,8 @@
   .common_bento {
     @apply rounded-3xl
   }
+
+  .link_bento_icon {
+    @apply w-10 h-10 md:w-20 md:h-20 lg:w-32 lg:h-32 xl:h-1/2 xl:w-1/2 stroke-white
+  }
 }

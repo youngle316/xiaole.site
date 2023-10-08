@@ -6,10 +6,12 @@ import MotionDiv from "~/components/Motion/MotionDiv";
 
 function ThemeSwitcher() {
   const { setTheme, theme } = useTheme();
-  console.log("theme", theme);
 
   return (
-    <MotionDiv classname="col-span-1 bg-gray-100 dark:bg-gray-900" isSquare>
+    <MotionDiv
+      classname="col-span-1 bg-gray-100 dark:bg-gray-900 flex items-center justify-center"
+      isSquare
+    >
       <div
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         className={`flex h-10 w-16 cursor-pointer rounded-full border-transparent p-1 transition-colors focus:outline-none ${

@@ -10,10 +10,8 @@ type MotionDivType = {
 function MotionDiv({ children, classname, isSquare }: MotionDivType) {
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
-      className={`common_bento flex items-center justify-center ${classname} ${
-        isSquare ? "aspect-square" : ""
-      }`}
+      whileHover={{ scale: 1.01 }}
+      className={`common_bento ${classname} ${isSquare ? "aspect-square" : ""}`}
     >
       {children}
     </motion.div>
