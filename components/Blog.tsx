@@ -9,7 +9,7 @@ function Blog() {
       <Link
         href="https://xlog.xiaole.site"
         target="_blank"
-        className="flex h-full w-full w-full flex-col justify-center"
+        className="flex h-full w-full flex-col justify-center"
       >
         <div className="rounded-3xl text-2xl font-bold text-gray-600 dark:text-gray-300 xl:text-4xl">
           <div className="flex items-center gap-3">

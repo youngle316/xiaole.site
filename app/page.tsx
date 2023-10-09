@@ -1,5 +1,3 @@
-"use client";
-
 import { Twitter, Github, Mail } from "lucide-react";
 import ThemeSwitcher from "~/components/ThemeSwitcher";
 import LinkBento from "~/components/LinkBento";

@@ -11,6 +11,7 @@ const ogImage =
   "https://tohvlvtcdfndxfxeeeaa.supabase.co/storage/v1/object/public/my-website/assets/SCR-20231008-oush.png";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://xiaole.site"),
   title: "XiaoLe Site",
   description: "XiaoLe Site - Developer, gamer, and creator",
   authors: [{ url: "https://xiaole.site", name: "xiaole" }],
