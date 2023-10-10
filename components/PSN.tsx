@@ -1,15 +1,11 @@
 import React from "react";
-import { headers } from "next/headers";
 
 async function getPsn() {
-  const headersList = headers();
-  const { env } = process;
-  const defaultReferer =
-    env.NODE_ENV === "production"
-      ? "https://xiaole.site/"
-      : "http://localhost:3000/";
-  const referer = headersList.get("referer") || defaultReferer;
-  const res = await fetch(`${referer}api/psn`, {
+  const referer =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_PRO_URL
+      : process.env.NEXT_PUBLIC_DEV_URL;
+  const res = await fetch(`${referer}/api/psn`, {
     next: { revalidate: 3600 },
   });
   return await res.json();
