@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import { motion } from "framer-motion";
 
 type MotionDivType = {
   children: React.ReactNode;
@@ -11,12 +8,13 @@ type MotionDivType = {
 
 function MotionDiv({ children, classname, isSquare }: MotionDivType) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.01 }}
-      className={`common_bento ${classname} ${isSquare ? "aspect-square" : ""}`}
+    <div
+      className={`common_bento duration-300 hover:scale-[1.01] ${classname} ${
+        isSquare ? "aspect-square" : ""
+      }`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
