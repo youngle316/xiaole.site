@@ -1,11 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Autour_One } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "~/provider/ThemeProvider";
 import "./globals.css";
 
-const autourOne = Autour_One({ weight: "400", subsets: ["latin"] });
+const nunito = localFont({ src: "../public/fonts/Nunito.ttf" });
 
 const ogImage =
   "https://tohvlvtcdfndxfxeeeaa.supabase.co/storage/v1/object/public/my-website/assets/SCR-20231008-oush.png";
@@ -61,7 +61,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${autourOne.className}`}>
+      <body className={`${nunito.className}`}>
         <Analytics />
         <ThemeProvider attribute="class" enableSystem={false}>
           <main className="m-5 flex flex-col">{children}</main>

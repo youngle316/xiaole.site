@@ -3,6 +3,7 @@ import ThemeSwitcher from "~/components/ThemeSwitcher";
 import LinkBento from "~/components/LinkBento";
 import Profile from "~/components/Profile";
 import Blog from "~/components/Blog";
+import PSN from "~/components/PSN";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         url="mailto:youngle316@gmail.com"
       />
       <Blog />
+      <PSN />
     </div>
   );
 }
