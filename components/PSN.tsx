@@ -6,8 +6,8 @@ async function getPsn() {
   const { env } = process;
   const defaultReferer =
     env.NODE_ENV === "production"
-      ? "https://xiaole.site"
-      : "http://localhost:3000";
+      ? "https://xiaole.site/"
+      : "http://localhost:3000/";
   const referer = headersList.get("referer") || defaultReferer;
   const res = await fetch(`${referer}api/psn`, {
     next: { revalidate: 3600 },
