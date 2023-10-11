@@ -20,7 +20,7 @@ async function Psn() {
     rounded-3xl bg-gray-100 duration-300 hover:scale-[1.01] dark:bg-gray-900 md:col-span-1 md:aspect-square"
     >
       <div
-        className="first-letter: rotate-20 hover:rotate-40 absolute left-0 top-0 m-2 h-9 w-9
+        className="absolute left-0 top-0 m-2 h-9 w-9
       fill-current text-gray-900 transition dark:text-gray-200 md:m-5 lg:h-16 lg:w-16"
       >
         <PsnSVG />

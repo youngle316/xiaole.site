@@ -6,7 +6,13 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
+    },
+  },
   plugins: [],
 };
 export default config;
