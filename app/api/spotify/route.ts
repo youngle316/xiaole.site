@@ -9,8 +9,6 @@ export async function GET() {
     const { access_token } = await getAccessToken();
     const client = new Client({ token: access_token });
 
-    await client.tracks.get("id");
-
     const player = new Player(client);
     const currentPlayback = await player.getCurrentlyPlaying("track");
     return NextResponse.json(currentPlayback);
