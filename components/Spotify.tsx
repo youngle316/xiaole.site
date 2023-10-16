@@ -22,6 +22,7 @@ function Spotify() {
 
   const { data, isLoading } = useSWR("/api/spotify", fetcher, {
     refreshInterval: 1000 * 60,
+    refreshWhenHidden: true,
   });
 
   const getPlayInfo = (data: CurrentPlayback): playInfoType => {
