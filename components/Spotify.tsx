@@ -1,56 +1,52 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Album, Client, Player, Track } from "spotify-api.js";
-import { getAccessToken } from "~/lib/spotify";
+import React from "react";
+import { Album, CurrentPlayback, Track } from "spotify-api.js";
+import useSWR from "swr";
 
 type playInfoType = {
   name: string;
   author: string;
   img: string;
+  isPlaying: boolean;
 };
 
 function Spotify() {
-  const [playInfo, setPlayInfo] = useState<playInfoType>({
+  async function fetcher(
+    input: RequestInfo,
+    init?: RequestInit,
+  ): Promise<JSON> {
+    const res = await fetch(input, init);
+    return res.json();
+  }
+
+  const { data, isLoading } = useSWR("/api/spotify", fetcher, {
+    refreshInterval: 1000 * 60,
+  });
+
+  const getPlayInfo = (data: CurrentPlayback): playInfoType => {
+    const { isPlaying, item } = data;
+    const info = item as Track;
+    const { name, artists, album } = info;
+    const { images } = album as Album;
+    return {
+      name,
+      author: artists[0].name,
+      img: images[1].url,
+      isPlaying,
+    };
+  };
+
+  let playInfo = {
     name: "歌謠",
     author: "李榮浩",
     img: "https://i.scdn.co/image/ab67616d00001e025e612ee6e4ad129abe910a53",
-  });
-  const [playing, setPlaying] = useState(false);
-
-  const fetchCurrentPlay = async () => {
-    const { access_token } = await getAccessToken();
-    const client = new Client({ token: access_token });
-
-    const player = new Player(client);
-    const currentPlayback = await player.getCurrentlyPlaying("track");
-    if (currentPlayback) {
-      const { isPlaying, item } = currentPlayback;
-      setPlaying(isPlaying);
-      const info = item as Track;
-      const { name, artists, album } = info;
-      const { images } = album as Album;
-      const tmpPlayInfo: playInfoType = {
-        name,
-        author: artists[0].name,
-        img: images[1].url,
-      };
-      setPlayInfo(tmpPlayInfo);
-    }
+    isPlaying: false,
   };
 
-  useEffect(() => {
-    fetchCurrentPlay();
-    const timer = setInterval(
-      async () => {
-        await fetchCurrentPlay();
-      },
-      1000 * 60 * 3,
-    );
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  if (data) {
+    playInfo = getPlayInfo(data as unknown as CurrentPlayback);
+  }
 
   return (
     <div
@@ -60,7 +56,7 @@ function Spotify() {
       <div
         className={`rotate absolute left-0 top-0 m-2
       h-8 w-8 fill-current text-[#2DBD59] transition dark:text-[#2DBD59] md:m-5 lg:h-16 lg:w-16 ${
-        playing ? "animate-spin-slow" : ""
+        playInfo.isPlaying ? "animate-spin-slow" : ""
       }`}
       >
         <SpotifySVG />
@@ -70,15 +66,19 @@ function Spotify() {
           Currently Listening
         </div>
         <div className="w-52 items-center justify-center truncate text-xs font-semibold md:w-40 lg:text-lg xl:w-56 xl:text-2xl">
-          {playInfo.name}
+          {isLoading ? "歌謠" : playInfo.name}
         </div>
         <div className="items-center justify-center text-xs font-light lg:text-lg xl:text-2xl">
-          {playInfo.author}
+          {isLoading ? "李榮浩" : playInfo.author}
         </div>
       </div>
       <div className="absolute bottom-0 right-0 overflow-hidden rounded-tl-full dark:brightness-95">
         <img
-          src={playInfo.img}
+          src={
+            isLoading
+              ? "https://i.scdn.co/image/ab67616d00001e025e612ee6e4ad129abe910a53"
+              : playInfo.img
+          }
           className="h-24 md:block lg:h-28 lg:w-28 xl:h-36 xl:w-36"
           alt="game"
         />

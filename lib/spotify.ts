@@ -18,6 +18,4 @@ const getAccessToken = async () => {
   return response.json();
 };
 
-// const getClient
-
 export { getAccessToken };

@@ -1,10 +1,8 @@
 import React from "react";
+import { getReferer } from "~/lib/utils";
 
 async function getPsn() {
-  const referer =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_PRO_URL
-      : process.env.NEXT_PUBLIC_DEV_URL;
+  const referer = getReferer();
   const res = await fetch(`${referer}/api/psn`, { cache: "no-store" });
   return await res.json();
 }
