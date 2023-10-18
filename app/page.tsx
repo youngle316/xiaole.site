@@ -5,6 +5,7 @@ import Profile from "~/components/Profile";
 import Blog from "~/components/Blog";
 import PSN from "~/components/PSN";
 import Spotify from "~/components/Spotify";
+import Online from "~/components/Online";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       />
       <Blog />
       <PSN />
+      <Online />
       <Spotify />
     </div>
   );
