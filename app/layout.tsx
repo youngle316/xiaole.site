@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "~/provider/ThemeProvider";
 import "./globals.css";
 
-const nunito = localFont({ src: "../public/fonts/Nunito.ttf" });
+const nunito = localFont({ src: "../public/fonts/Exo2.ttf" });
 
 const ogImage =
   "https://tohvlvtcdfndxfxeeeaa.supabase.co/storage/v1/object/public/my-website/assets/SCR-20231008-oush.png";
