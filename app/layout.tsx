@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "~/provider/ThemeProvider";
 import "./globals.css";
 
@@ -62,7 +61,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.className}`}>
-        <Analytics />
         <ThemeProvider attribute="class" enableSystem={false}>
           <main className="m-5 flex flex-col">{children}</main>
         </ThemeProvider>
