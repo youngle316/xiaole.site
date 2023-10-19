@@ -6,6 +6,7 @@ import Blog from "~/components/Blog";
 import PSN from "~/components/PSN";
 import Spotify from "~/components/Spotify";
 import Online from "~/components/Online";
+import Time from "~/components/Time/Time";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
       <PSN />
       <Online />
       <Spotify />
+      <Time />
     </div>
   );
 }
