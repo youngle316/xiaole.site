@@ -44,7 +44,7 @@ function Spotify() {
     isPlaying: false,
   };
 
-  if (data) {
+  if (!isLoading) {
     playInfo = getPlayInfo(data as unknown as CurrentPlayback);
   }
 
@@ -66,19 +66,15 @@ function Spotify() {
           Currently Listening
         </div>
         <div className="w-52 items-center justify-center truncate text-xs font-semibold md:w-40 lg:text-lg xl:w-56 xl:text-2xl">
-          {isLoading ? "歌謠" : playInfo.name}
+          {playInfo.name}
         </div>
         <div className="items-center justify-center text-xs font-light lg:text-lg xl:text-2xl">
-          {isLoading ? "李榮浩" : playInfo.author}
+          {playInfo.author}
         </div>
       </div>
       <div className="absolute bottom-0 right-0 overflow-hidden rounded-tl-full dark:brightness-95">
         <img
-          src={
-            isLoading
-              ? "https://i.scdn.co/image/ab67616d00001e025e612ee6e4ad129abe910a53"
-              : playInfo.img
-          }
+          src={playInfo.img}
           className="h-24 md:block lg:h-28 lg:w-28 xl:h-36 xl:w-36"
           alt="game"
         />

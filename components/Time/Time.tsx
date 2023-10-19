@@ -25,8 +25,6 @@ function Time() {
 
   const { data } = useSWR("/api/time", fetcher);
 
-  console.log("data", data);
-
   const [sunriseTime, sunsetTime] = useMemo(() => {
     const timeInfo = data as unknown as TimeInfoType;
     if (!data) return [null, null];
