@@ -7,6 +7,8 @@ import {
   getUserTitles,
 } from "psn-api";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const psnToken = process.env.NEXT_PUBLIC_PSN_NPSSO as string;
   if (!psnToken) {

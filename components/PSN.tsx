@@ -1,16 +1,44 @@
+"use client";
+
 import React from "react";
-import { getReferer } from "~/lib/utils";
+import useSWR from "swr";
 
-async function getPsn() {
-  const referer = getReferer();
-  const res = await fetch(`${referer}/api/psn`, { cache: "no-store" });
-  return await res.json();
-}
+type PsnInfoType = {
+  trophyTitles: {
+    trophyTitleName: string;
+    trophyTitlePlatform: string;
+    trophyTitleIconUrl: string;
+  }[];
+};
 
-async function Psn() {
-  const data = await getPsn();
-  const { trophyTitleName, trophyTitlePlatform, trophyTitleIconUrl } =
-    data.trophyTitles[0];
+function Psn() {
+  async function fetcher(
+    input: RequestInfo,
+    init?: RequestInit,
+  ): Promise<JSON> {
+    const res = await fetch(input, init);
+    return res.json();
+  }
+
+  const { data, isLoading } = useSWR("/api/psn", fetcher, {
+    refreshInterval: 1000 * 60 * 60,
+  });
+
+  const PsnInfo = {
+    trophyTitleName: "Assassin's Creed® Mirage",
+    trophyTitlePlatform: "PS5",
+    trophyTitleIconUrl:
+      "https://psnobj.prod.dl.playstation.net/psnobj/NPWR29894_00/9f6ed43e-781f-4232-a75b-1e5f36d31719.png",
+  };
+
+  if (!isLoading) {
+    const psnResponseData = data as unknown as PsnInfoType;
+    const { trophyTitleName, trophyTitlePlatform, trophyTitleIconUrl } =
+      psnResponseData.trophyTitles[0];
+    PsnInfo.trophyTitleName = trophyTitleName;
+    PsnInfo.trophyTitlePlatform = trophyTitlePlatform;
+    PsnInfo.trophyTitleIconUrl = trophyTitleIconUrl;
+  }
 
   return (
     <div
@@ -28,15 +56,15 @@ async function Psn() {
           Currently Gaming
         </div>
         <div className="w-52 items-center justify-center truncate text-xs font-semibold md:w-40 lg:text-lg xl:w-56 xl:text-2xl">
-          {trophyTitleName}
+          {PsnInfo.trophyTitleName}
         </div>
         <div className="items-center justify-center text-xs font-light lg:text-lg xl:text-2xl">
-          {trophyTitlePlatform}
+          {PsnInfo.trophyTitlePlatform}
         </div>
       </div>
       <div className="absolute bottom-0 right-0 overflow-hidden rounded-tl-full dark:brightness-95">
         <img
-          src={trophyTitleIconUrl}
+          src={PsnInfo.trophyTitleIconUrl}
           className="h-24 md:block lg:h-28 lg:w-28 xl:h-36 xl:w-36"
           alt="game"
         />
