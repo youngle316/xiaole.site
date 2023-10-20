@@ -20,7 +20,7 @@ function Psn() {
     return res.json();
   }
 
-  const { data, isLoading } = useSWR("/api/psn", fetcher, {
+  const { data } = useSWR("/api/psn", fetcher, {
     refreshInterval: 1000 * 60 * 60,
   });
 
@@ -31,7 +31,7 @@ function Psn() {
       "https://psnobj.prod.dl.playstation.net/psnobj/NPWR29894_00/9f6ed43e-781f-4232-a75b-1e5f36d31719.png",
   };
 
-  if (!isLoading) {
+  if (data) {
     const psnResponseData = data as unknown as PsnInfoType;
     const { trophyTitleName, trophyTitlePlatform, trophyTitleIconUrl } =
       psnResponseData.trophyTitles[0];

@@ -20,7 +20,7 @@ function Spotify() {
     return res.json();
   }
 
-  const { data, isLoading } = useSWR("/api/spotify", fetcher, {
+  const { data } = useSWR("/api/spotify", fetcher, {
     refreshInterval: 1000 * 60,
   });
 
@@ -44,7 +44,7 @@ function Spotify() {
     isPlaying: false,
   };
 
-  if (!isLoading) {
+  if (data) {
     playInfo = getPlayInfo(data as unknown as CurrentPlayback);
   }
 
