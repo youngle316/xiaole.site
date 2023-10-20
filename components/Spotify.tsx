@@ -24,24 +24,27 @@ function Spotify() {
     refreshInterval: 1000 * 60,
   });
 
-  const getPlayInfo = (data: CurrentPlayback): playInfoType => {
-    const { isPlaying, item } = data;
-    const info = item as Track;
-    const { name, artists, album } = info;
-    const { images } = album as Album;
-    return {
-      name,
-      author: artists[0].name,
-      img: images[1].url,
-      isPlaying,
-    };
-  };
-
   let playInfo = {
     name: "歌謠",
     author: "李榮浩",
     img: "https://i.scdn.co/image/ab67616d00001e025e612ee6e4ad129abe910a53",
     isPlaying: false,
+  };
+
+  const getPlayInfo = (data: CurrentPlayback): playInfoType => {
+    const { isPlaying, item, currentPlayingType } = data;
+    if (currentPlayingType === "track") {
+      const info = item as Track;
+      const { name, artists, album } = info;
+      const { images } = album as Album;
+      return {
+        name,
+        author: artists[0].name,
+        img: images[1].url,
+        isPlaying,
+      };
+    }
+    return playInfo;
   };
 
   if (data) {
