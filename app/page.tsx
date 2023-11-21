@@ -7,6 +7,7 @@ import PSN from "~/components/PSN";
 import Spotify from "~/components/Spotify";
 import Online from "~/components/Online";
 import Time from "~/components/Time/Time";
+import Weekly from "~/components/Weekly";
 
 export default function Home() {
   return (
@@ -23,12 +24,13 @@ export default function Home() {
         icon={<Github className="link_bento_icon dark:stroke-gray-900" />}
         url="https://github.com/youngle316"
       />
+      <Blog />
       <LinkBento
         classname="bg-violet-400 dark:bg-violet-700"
         icon={<Mail className="link_bento_icon dark:stroke-gray-900" />}
         url="mailto:youngle316@gmail.com"
       />
-      <Blog />
+      <Weekly />
       <PSN />
       <Online />
       <Spotify />
