@@ -7,7 +7,7 @@ import "./globals.css";
 const nunito = localFont({ src: "../public/fonts/Exo2.ttf" });
 
 const ogImage =
-  "https://tohvlvtcdfndxfxeeeaa.supabase.co/storage/v1/object/public/my-website/assets/SCR-20231008-oush.png";
+  "https://obsidian-picgo-le.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-85pjk1.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://xiaole.site"),
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ogImage,
-        width: 1920,
-        height: 1440,
+        width: 3840,
+        height: 2160,
       },
     ],
   },

@@ -1,13 +1,13 @@
-import { Twitter, Github, Mail } from "lucide-react";
+import { Twitter, Github, Mail, Tv } from "lucide-react";
 import ThemeSwitcher from "~/components/ThemeSwitcher";
 import LinkBento from "~/components/LinkBento";
 import Profile from "~/components/Profile";
 import Blog from "~/components/Blog";
 import PSN from "~/components/PSN";
 import Spotify from "~/components/Spotify";
-import Online from "~/components/Online";
 import Time from "~/components/Time/Time";
 import Weekly from "~/components/Weekly";
+import React from "react";
 
 export default function Home() {
   return (
@@ -32,7 +32,11 @@ export default function Home() {
       />
       <Weekly />
       <PSN />
-      <Online />
+      <LinkBento
+        classname="bg-blue-400 dark:bg-blue-700"
+        icon={<Tv className="link_bento_icon dark:stroke-gray-900" />}
+        url="https://t.me/xiaole_channel"
+      />
       <Spotify />
       <Time />
     </div>
